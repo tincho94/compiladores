@@ -43,7 +43,6 @@ public class Json_Parser {
             System.out.println("Sin errores sintacticos");
     }
     
-    /*asigna un nuevo token en la variable global token*/
     static void readToken(){
         do{
             try 
@@ -66,7 +65,7 @@ public class Json_Parser {
     }
 
     static void error() {
-        System.out.println("error de sintaxis en linea "+Json_Lexer.linea+" no se esperaba "+token);
+        System.out.println("error de sintaxis en linea "+Json_Lexer.linea+" .No se esperaba "+token);
         acepto=-1;
         if (token.idt==EOF)
             System.exit(0);
@@ -112,7 +111,6 @@ public class Json_Parser {
     }
     
     static void element(int[] synchset){
-        //                  conjunto primero              EOF
         checkinput(new int[]{L_CORCHETE,LITERAL_CADENA}, synchset);
         if(!(in(synchset))){
             switch(token.idt){
@@ -141,8 +139,6 @@ public class Json_Parser {
     }
 
     private static void aux(int[] synchset) {
-        //un caso especial son las funciones que pueden tomar vacio:
-        //es valido que venga la coma o que venga algo de su conjunto siguiente
         checkinput(union(new int[]{COMA},synchset), new int[]{});
         if(!(in(synchset))){
             match(COMA);
@@ -163,7 +159,7 @@ public class Json_Parser {
                     elementlist(new int[]{R_CORCHETE});
                     break;
                 case LITERAL_CADENA:
-                    elementlist(new int[]{R_CORCHETE});//el corchete del element que le contiene
+                    elementlist(new int[]{R_CORCHETE});
                     break;
                 default:
                     error();

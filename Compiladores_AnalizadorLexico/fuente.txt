@@ -2,8 +2,8 @@
   [ "table",
     { "id" : "persona" },
     [ "column",
-      { "id" : "ci" },
-      "1495256"
+      { "id" : " 14.95256siete8" },
+      1495256siete8
     ],
     [ "column",
       { "id" : "nombre" },
